@@ -121,6 +121,11 @@ svmp_aio_disk_vdi: $(SVMP_VDI_AIO_DISK_IMAGE_TARGET)
 %.vdi: %.img
 	@echo "Converting image to VDI format: $^"
 	@rm -f $@
+	
+	@echo "$(hide) $(qemu-img) convert \
+		-O vdi -f raw \
+		$^ $@"
+	
 	$(hide) $(qemu-img) convert \
 		-O vdi -f raw \
 		$^ $@

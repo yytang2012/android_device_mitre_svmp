@@ -1,3 +1,6 @@
+#added by yytang 09-11-2015
+import /init.superuser.rc
+
 on init
     mkdir /mnt/shell/emulated 0700 shell shell
     mkdir /storage/emulated 0555 root root
@@ -5,6 +8,12 @@ on init
     export EXTERNAL_STORAGE /storage/emulated/legacy
     export EMULATED_STORAGE_SOURCE /mnt/shell/emulated
     export EMULATED_STORAGE_TARGET /storage/emulated
+
+    # Support legacy paths
+    symlink /storage/emulated/legacy /sdcard
+    symlink /storage/emulated/legacy /mnt/sdcard
+    symlink /storage/emulated/legacy /storage/sdcard0
+    symlink /mnt/shell/emulated/0 /storage/emulated/legacy
 
 on boot
     setprop ARGH ARGH
@@ -62,7 +71,9 @@ service print-net /system/bin/print-netcfg
     oneshot
 
 # pass in the resolution to be set x,y
-service fbset /system/bin/logwrapper /system/bin/fbset 360 480 20.0
+#service fbset /system/bin/logwrapper /system/bin/fbset 360 480 20.0
+# Updated by yytang 09-02-2015
+service fbset /system/bin/logwrapper /system/bin/fbset 400 640 50.0
     oneshot
     class precore # start early
 

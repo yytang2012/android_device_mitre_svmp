@@ -24,7 +24,7 @@ SVMP_KERN_CONFIG := device/mitre/svmp/svmp-kernel.config
 
 PRODUCT_PROPERTY_OVERRIDES := \
     ro.ril.hsxpa=1 \
-    ro.ril.gprsclass=10
+    ro.ril.gprsclass=10 
 
 PRODUCT_PACKAGES += \
 		hwcomposer.default \
@@ -37,7 +37,15 @@ PRODUCT_PACKAGES += \
 		libremote_events_jni \
 		libjingle_peerconnection_so.so \
 		e2fsck \
-		Email
+		Email  
+
+# added by yytang 
+PRODUCT_PACKAGES += \
+		su \
+		Superuser 
+#		libFFmpegExtractor \
+		libstagefright_soft_ffmpegadec \
+		libstagefright_soft_ffmpegvdec
 
 PRODUCT_COPY_FILES += \
     device/generic/goldfish/data/etc/apns-conf.xml:system/etc/apns-conf.xml \
